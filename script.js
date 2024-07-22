@@ -7,17 +7,15 @@ document.getElementById('nutrition-form').addEventListener('submit', function(e)
     const bodyfat = parseFloat(document.getElementById('bodyfat').value);
     const traineeLevel = document.getElementById('trainee-level').value;
     const steps = parseInt(document.getElementById('steps').value);
-    const foodChoices = document.getElementById('food-choices').value;
 
     // Basic validation
-    if (!height || !weight || !bodyfat || !traineeLevel || !steps || !foodChoices) {
+    if (!height || !weight || !bodyfat || !traineeLevel || !steps) {
         alert('Please fill in all fields');
         return;
     }
 
     // Calculate BMR using the Harris-Benedict equation
-    // Assuming male for this example; you can extend the form to ask for gender
-    const age = 29; // Assuming a fixed age; you can extend the form to ask for age
+    const age = 29; // Fixed age; modify as needed
     const BMR = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age);
 
     // Adjust BMR based on activity level
@@ -43,6 +41,17 @@ document.getElementById('nutrition-form').addEventListener('submit', function(e)
     const stepsCalories = steps * caloriesPerStep;
     const totalDailyCalories = dailyCalories + stepsCalories;
 
+    // Calculate macros based on total daily calories
+    // Macronutrient breakdown: 40% carbs, 30% protein, 30% fat
+    const carbsCalories = totalDailyCalories * 0.4;
+    const proteinCalories = totalDailyCalories * 0.3;
+    const fatCalories = totalDailyCalories * 0.3;
+
+    // Convert calories to grams (1g carbs = 4 calories, 1g protein = 4 calories, 1g fat = 9 calories)
+    const carbsGrams = carbsCalories / 4;
+    const proteinGrams = proteinCalories / 4;
+    const fatGrams = fatCalories / 9;
+
     // Display the results
     const resultDiv = document.createElement('div');
     resultDiv.className = 'result';
@@ -53,9 +62,11 @@ document.getElementById('nutrition-form').addEventListener('submit', function(e)
         <p><strong>Body Fat Percentage:</strong> ${bodyfat} %</p>
         <p><strong>Level of Trainee:</strong> ${traineeLevel}</p>
         <p><strong>Steps Count:</strong> ${steps}</p>
-        <p><strong>Food Choices:</strong> ${foodChoices}</p>
         <p><strong>BMR:</strong> ${BMR.toFixed(2)} kcal/day</p>
-        <p><strong>Daily Caloric Needs:</strong> ${totalDailyCalories.toFixed(2)} kcal/day</p>
+        <p><strong>Total Daily Calories:</strong> ${totalDailyCalories.toFixed(2)} kcal/day</p>
+        <p><strong>Carbs:</strong> ${carbsGrams.toFixed(2)} g/day</p>
+        <p><strong>Protein:</strong> ${proteinGrams.toFixed(2)} g/day</p>
+        <p><strong>Fat:</strong> ${fatGrams.toFixed(2)} g/day</p>
     `;
 
     document.body.appendChild(resultDiv);
