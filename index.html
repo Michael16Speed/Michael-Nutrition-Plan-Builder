@@ -34,6 +34,10 @@
                 <label for="steps">Steps Count:</label>
                 <input type="number" id="steps" name="steps" required>
             </div>
+            <div class="form-group">
+                <label for="training-days">Number of Training Days per Week:</label>
+                <input type="number" id="training-days" name="training-days" min="1" max="7" required>
+            </div>
             <button type="submit">Generate Plan</button>
             <button type="button" id="reset-button">Reset</button>
         </form>
