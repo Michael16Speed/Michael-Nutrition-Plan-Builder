@@ -81,30 +81,4 @@ button[type="button"] {
     padding: 15px;
     background-color: #e8f5e9;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.result h2 {
-    font-size: 20px;
-    margin-bottom: 10px;
-    color: #388E3C;
-}
-
-.result p {
-    font-size: 16px;
-    margin-bottom: 5px;
-}
-
-/* Responsive Design */
-@media (max-width: 600px) {
-    .container {
-        padding: 15px;
-        box-shadow: none;
-        border-radius: 0;
-    }
-
-    button {
-        width: 100%;
-        margin-top: 10px;
-    }
-}
+    box-shadow:
