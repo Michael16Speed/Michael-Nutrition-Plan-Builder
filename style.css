@@ -54,3 +54,19 @@ button {
 button:hover {
     background-color: #45a049;
 }
+
+.result {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #e0f7fa;
+    border: 1px solid #4CAF50;
+    border-radius: 8px;
+}
+
+.result h2 {
+    color: #4CAF50;
+}
+
+.result p {
+    margin: 5px 0;
+}
