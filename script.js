@@ -53,9 +53,7 @@ document.getElementById('nutrition-form').addEventListener('submit', function(e)
     const fatGrams = fatCalories / 9;
 
     // Display the results
-    const resultDiv = document.createElement('div');
-    resultDiv.className = 'result';
-    resultDiv.id = 'results';
+    const resultDiv = document.getElementById('results');
     resultDiv.innerHTML = `
         <h2>Your Nutrition Plan</h2>
         <p><strong>Height:</strong> ${height} cm</p>
@@ -69,8 +67,6 @@ document.getElementById('nutrition-form').addEventListener('submit', function(e)
         <p><strong>Protein:</strong> ${proteinGrams.toFixed(2)} g/day</p>
         <p><strong>Fat:</strong> ${fatGrams.toFixed(2)} g/day</p>
     `;
-
-    document.body.appendChild(resultDiv);
 });
 
 // Add functionality for the reset button
@@ -80,7 +76,5 @@ document.getElementById('reset-button').addEventListener('click', function() {
     
     // Remove results
     const resultsDiv = document.getElementById('results');
-    if (resultsDiv) {
-        resultsDiv.remove();
-    }
+    resultsDiv.innerHTML = '';
 });
