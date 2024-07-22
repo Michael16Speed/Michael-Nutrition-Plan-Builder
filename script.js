@@ -7,9 +7,10 @@ document.getElementById('nutrition-form').addEventListener('submit', function(e)
     const bodyfat = parseFloat(document.getElementById('bodyfat').value);
     const traineeLevel = document.getElementById('trainee-level').value;
     const steps = parseInt(document.getElementById('steps').value);
+    const trainingDays = parseInt(document.getElementById('training-days').value);
 
     // Basic validation
-    if (!height || !weight || !bodyfat || !traineeLevel || !steps) {
+    if (!height || !weight || !bodyfat || !traineeLevel || !steps || !trainingDays) {
         alert('Please fill in all fields');
         return;
     }
@@ -34,7 +35,11 @@ document.getElementById('nutrition-form').addEventListener('submit', function(e)
             activityFactor = 1.2;
     }
 
-    const dailyCalories = BMR * activityFactor;
+    // Adjust activity factor based on training days
+    const trainingFactor = trainingDays / 7; // Scale the factor to reflect weekly training volume
+    const adjustedActivityFactor = activityFactor + (trainingFactor * 0.25);
+
+    const dailyCalories = BMR * adjustedActivityFactor;
     
     // Calculate additional calories burned from steps
     const caloriesPerStep = 0.04; // Average calories burned per step
@@ -61,6 +66,7 @@ document.getElementById('nutrition-form').addEventListener('submit', function(e)
         <p><strong>Body Fat Percentage:</strong> ${bodyfat} %</p>
         <p><strong>Level of Trainee:</strong> ${traineeLevel}</p>
         <p><strong>Steps Count:</strong> ${steps}</p>
+        <p><strong>Number of Training Days per Week:</strong> ${trainingDays}</p>
         <p><strong>BMR:</strong> ${BMR.toFixed(2)} kcal/day</p>
         <p><strong>Total Daily Calories:</strong> ${totalDailyCalories.toFixed(2)} kcal/day</p>
         <p><strong>Carbs:</strong> ${carbsGrams.toFixed(2)} g/day</p>
